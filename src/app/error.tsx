@@ -1,0 +1,1 @@
+//  # Root error boundary (client)
