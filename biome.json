@@ -7,15 +7,26 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": [
-      "src/**/*.{ts,tsx,js,jsx}"
-    ]
+    "includes": ["src/**/*.{ts,tsx,js,jsx}"]
   },
   "formatter": {
     "enabled": true,
+    "formatWithErrors": false,
+    "attributePosition": "auto",
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 100
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
   },
   "linter": {
     "enabled": true,
@@ -25,6 +36,11 @@
     "domains": {
       "next": "recommended",
       "react": "recommended"
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true
     }
   },
   "assist": {

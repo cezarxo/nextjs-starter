@@ -1,0 +1,36 @@
+# ---- deps stage ----
+FROM node:20-alpine AS deps
+WORKDIR /app
+RUN corepack enable
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install --frozen-lockfile
+
+# ---- build stage ----
+FROM node:20-alpine AS builder
+WORKDIR /app
+RUN corepack enable
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+# Ensure NEXT_PUBLIC_* envs are available at build if you need static replacement
+ARG NEXT_PUBLIC_API_BASE_URL
+ARG NEXT_PUBLIC_SOCKET_URL
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
+RUN pnpm build
+
+# ---- runtime stage ----
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
+USER nextjs
+
+# Next.js standalone output
+COPY --from=builder /app/.next/standalone ./ 
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+# Runtime envs (public ones must start with NEXT_PUBLIC_)
+ENV PORT=3000
+EXPOSE 3000
+CMD ["node", "server.js"]
