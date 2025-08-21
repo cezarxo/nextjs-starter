@@ -1,19 +1,21 @@
 import { Loader2 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 
-export default function Loading() {
+export default function GlobalLoading() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center">
         <div className="mb-6">
-          <Logo size="md" showText={false} />
+          <Logo size="lg" showText={false} />
         </div>
-        <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
+        <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+          <Loader2 className="h-8 w-8 animate-spin" />
+        </div>
         <h2 className="text-xl font-semibold text-foreground mb-2">
-          Loading Marhaba Auction
+          Welcome to Marhaba Auction
         </h2>
         <p className="text-muted-foreground">
-          Please wait while we prepare your experience...
+          Loading premium used car auctions...
         </p>
       </div>
     </div>
