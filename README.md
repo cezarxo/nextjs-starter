@@ -70,6 +70,15 @@ DATABASE_URL="postgresql://username:password@localhost:5432/nextjs_starter"
 REDIS_URL="redis://localhost:6379"
 ```
 
+### Default Test User
+
+For development and testing, a default user is configured:
+
+- **Email:** `admin@example.com`
+- **Password:** `admin123`
+
+This allows you to test protected routes immediately without setting up OAuth providers.
+
 ### Supported Providers
 
 - **Google OAuth 2.0**
@@ -81,9 +90,11 @@ REDIS_URL="redis://localhost:6379"
 
 - Custom sign-in and sign-up pages
 - Social media login integration
-- Protected routes
+- Protected routes with automatic redirects
 - Session management
 - JWT-based authentication
+- User profile dropdown with sign-out
+- Responsive authentication UI
 
 ## 🚀 Quick Start
 
@@ -135,17 +146,31 @@ nextjs-starter/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── (auth)/            # Auth route group
-│   │   ├── (home)/            # Home route group
+│   │   │   ├── signin/        # Sign-in page
+│   │   │   ├── signup/        # Sign-up page
+│   │   │   └── error/         # Auth error page
+│   │   ├── (marketing)/       # Marketing route group
+│   │   │   └── features/      # Features showcase
 │   │   ├── api/               # API routes
+│   │   │   ├── auth/          # NextAuth.js API
+│   │   │   └── health/        # Health check endpoint
+│   │   ├── dashboard/         # Protected dashboard routes
+│   │   │   ├── users/         # User management
+│   │   │   └── [id]/          # Dynamic user routes
+│   │   ├── parallel/          # Parallel routes example
+│   │   ├── intercepted/       # Intercepted routes example
+│   │   ├── _private/          # Private folder (not routed)
 │   │   ├── providers/         # React providers
 │   │   └── layout.tsx         # Root layout
 │   ├── components/            # Reusable components
 │   │   ├── ui/               # shadcn/ui components
 │   │   ├── layout/           # Layout components
+│   │   ├── auth/             # Authentication components
 │   │   └── custom/           # Custom components
 │   ├── lib/                  # Utility libraries
 │   │   ├── api/              # API utilities
 │   │   ├── sockets/          # Socket.io utilities
+│   │   ├── auth.ts           # NextAuth.js configuration
 │   │   └── utils.ts          # General utilities
 │   ├── hooks/                # Custom React hooks
 │   ├── types/                # TypeScript type definitions
@@ -153,7 +178,6 @@ nextjs-starter/
 ├── public/                   # Static assets
 ├── Dockerfile               # Multi-stage Docker build
 ├── docker-compose.yml       # Docker Compose configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
 ├── next.config.ts           # Next.js configuration
 ├── biome.json               # Biome configuration
 └── package.json             # Dependencies and scripts
@@ -163,8 +187,8 @@ nextjs-starter/
 
 ```bash
 # Development
-bun run dev          # Start development server
-bun run build        # Build for production
+bun run dev          # Start development server with Turbopack
+bun run build        # Build for production with Turbopack
 bun run start        # Start production server
 
 # Code Quality
@@ -180,6 +204,30 @@ bun run docker:run   # Run Docker container
 # Utilities
 bun run clean        # Clean build artifacts
 ```
+
+## 🛣️ Advanced Routing Examples
+
+This starter includes comprehensive examples of Next.js 15 routing features:
+
+### **Nested Routes**
+- `/dashboard` - Main dashboard with navigation
+- `/dashboard/users` - User management page
+- `/dashboard/users/[id]` - Dynamic user detail pages
+
+### **Route Groups**
+- `(marketing)/features` - Marketing content without affecting URL structure
+
+### **Parallel Routes**
+- `/parallel` - Demonstrates parallel route slots (`@modal`, `@sidebar`)
+
+### **Intercepted Routes**
+- `/intercepted` - Shows how routes can be intercepted for modal-like experiences
+
+### **Private Folders**
+- `_private/secret` - Code organization without public routing
+
+### **Dynamic Routes**
+- `[id]` parameters with proper TypeScript support for Next.js 15
 
 ## 🔧 Configuration
 
@@ -256,10 +304,23 @@ The project includes a comprehensive set of shadcn/ui components:
 
 - **Layout**: Card, Container, Separator
 - **Navigation**: Navigation Menu, Breadcrumb
-- **Forms**: Input, Button, Select, Checkbox, Radio
-- **Feedback**: Alert, Toast, Progress, Skeleton
+- **Forms**: Input, Button, Select, Checkbox, Radio, Form
+- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
 - **Data Display**: Table, Badge, Avatar
-- **Overlay**: Dialog, Popover, Tooltip, Hover Card
+- **Overlay**: Dialog, Popover, Tooltip, Hover Card, Dropdown Menu
+
+### **Authentication Components**
+
+- **UserProfile** - User avatar with dropdown menu
+- **SignIn/SignUp Pages** - Complete authentication forms
+- **Error Handling** - User-friendly error pages
+- **Protected Routes** - Automatic redirects for unauthenticated users
+
+### **Layout Components**
+
+- **Navigation** - Responsive navbar with authentication
+- **Footer** - Site footer with links
+- **Theme Toggle** - Dark/light mode switching
 
 ## 🔌 API Integration
 
@@ -321,9 +382,11 @@ function ChatComponent() {
 - All pages use server-side rendering by default
 - API routes for data fetching
 - Proper metadata for SEO
+- Protected routes with server-side authentication checks
 
 ### Performance
 
+- **Turbopack** for fast development and builds
 - Image optimization with Next.js Image component
 - Code splitting and lazy loading
 - Bundle analysis and optimization
@@ -333,12 +396,22 @@ function ChatComponent() {
 - Environment variable validation
 - API route protection
 - CORS configuration
+- JWT-based authentication
+- Protected route middleware
 
 ### Accessibility
 
 - ARIA labels and roles
 - Keyboard navigation support
 - Screen reader compatibility
+- Theme-aware components
+
+### Code Quality
+
+- **Biome** for fast formatting and linting
+- TypeScript strict mode enabled
+- Consistent import organization
+- ESLint with Next.js rules
 
 ## 🚀 Deployment
 
@@ -391,6 +464,26 @@ If you encounter any issues or have questions:
 1. Check the [Next.js documentation](https://nextjs.org/docs)
 2. Review the [shadcn/ui documentation](https://ui.shadcn.com)
 3. Open an issue in this repository
+
+## 🆕 What's New
+
+### **Latest Updates**
+- ✅ **NextAuth.js Integration** - Complete authentication system
+- ✅ **Protected Routes** - Dashboard and user management
+- ✅ **Advanced Routing** - Examples of all Next.js 15 routing features
+- ✅ **Turbopack Enabled** - Fast development and builds
+- ✅ **Theme System** - Dark/light mode with no hydration issues
+- ✅ **Default Test User** - Immediate access to protected features
+- ✅ **Responsive UI** - Mobile-first design with shadcn/ui
+- ✅ **Code Quality** - Biome formatting and linting
+
+### **Ready to Use**
+- 🚀 **Authentication** - Sign in/up with social providers or credentials
+- 🚀 **Dashboard** - Protected admin interface
+- 🚀 **User Management** - CRUD operations with dynamic routing
+- 🚀 **Component Library** - 20+ shadcn/ui components
+- 🚀 **Real-time Features** - Socket.io integration
+- 🚀 **State Management** - TanStack Query setup
 
 ## 🙏 Acknowledgments
 
