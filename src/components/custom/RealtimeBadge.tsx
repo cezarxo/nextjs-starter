@@ -4,7 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function RealtimeBadge() {
-  const [flash, _setFlash] = useState(false);
+  const [flash] = useState(false);
 
   return (
     <span

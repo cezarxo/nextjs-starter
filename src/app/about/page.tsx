@@ -1,13 +1,15 @@
 import {
-  Award,
-  Car,
-  Gavel,
+  Code,
+  Database,
+  ExternalLink,
+  Github,
   Globe,
+  Palette,
   Shield,
-  TrendingUp,
-  Users,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,284 +20,234 @@ import {
 } from "@/components/ui/card";
 
 export default function AboutPage() {
-  const stats = [
-    {
-      icon: <Car className="h-8 w-8" />,
-      number: "10,000+",
-      label: "Vehicles Sold",
-      description: "Successfully auctioned vehicles",
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      number: "5,000+",
-      label: "Happy Customers",
-      description: "Satisfied buyers and sellers",
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      number: "15+",
-      label: "Years Experience",
-      description: "In international trade",
-    },
-    {
-      icon: <Award className="h-8 w-8" />,
-      number: "99%",
-      label: "Success Rate",
-      description: "Successful deliveries",
-    },
-  ];
-
-  const values = [
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Trust & Transparency",
-      description:
-        "We believe in complete transparency in all our dealings, from vehicle condition reports to shipping costs.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      title: "Quality & Excellence",
-      description:
-        "Every vehicle we auction meets our strict quality standards, ensuring customer satisfaction.",
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Global Reach",
-      description:
-        "Connecting buyers and sellers across continents with reliable shipping and logistics solutions.",
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "Customer First",
-      description:
-        "Our customers are at the heart of everything we do, from personalized service to after-sales support.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Ahmed Al Mansouri",
-      role: "CEO & Founder",
-      experience: "20+ years in international trade",
-      expertise: "Strategic planning, market expansion",
-    },
-    {
-      name: "Sarah Johnson",
-      role: "Head of Operations",
-      experience: "15+ years in logistics",
-      expertise: "Supply chain management, quality control",
-    },
-    {
-      name: "Michael Chen",
-      role: "Head of Technology",
-      experience: "12+ years in software development",
-      expertise: "Platform development, digital solutions",
-    },
-    {
-      name: "Fatima Al Zahra",
-      role: "Head of Customer Relations",
-      experience: "10+ years in customer service",
-      expertise: "Client satisfaction, relationship management",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-            About Marhaba Auction
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Leading the way in premium used car auctions and international
-            shipping from USA & Canada to the UAE.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
-              <Link href="/auctions" className="flex items-center space-x-2">
-                <Gavel className="h-5 w-5" />
-                <span>Explore Auctions</span>
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/contact" className="flex items-center space-x-2">
-                <Users className="h-5 w-5" />
-                <span>Meet Our Team</span>
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+    <div className="container mx-auto px-4 py-8">
+      {/* Header */}
+      <div className="mb-12 text-center">
+        <h1 className="text-4xl font-bold mb-4">About This Starter</h1>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          A comprehensive Next.js 15 starter template with modern tooling,
+          beautiful UI components, and production-ready configuration.
+        </p>
+      </div>
 
-      {/* Story Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Founded in 2009, Marhaba Auction began as a small family
-                  business with a vision to bridge the gap between premium used
-                  vehicles in North America and discerning buyers in the UAE.
-                </p>
-                <p>
-                  What started as a local auction house has grown into a
-                  comprehensive international platform, connecting buyers and
-                  sellers across continents while maintaining the personal touch
-                  that made us successful.
-                </p>
-                <p>
-                  Today, we're proud to be the leading platform for used car
-                  auctions in the region, with thousands of satisfied customers
-                  and a reputation for quality, transparency, and reliability.
-                </p>
+      {/* Features Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Zap className="h-5 w-5 text-blue-500" />
+              <CardTitle>Next.js 15</CardTitle>
+            </div>
+            <CardDescription>
+              Latest features with App Router, Server Components, and Turbopack
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Badge variant="secondary">App Router</Badge>
+              <Badge variant="secondary">Server Components</Badge>
+              <Badge variant="secondary">Turbopack</Badge>
+              <Badge variant="secondary">TypeScript</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Palette className="h-5 w-5 text-green-500" />
+              <CardTitle>Design System</CardTitle>
+            </div>
+            <CardDescription>
+              Beautiful shadcn/ui components with Tailwind CSS v4
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Badge variant="secondary">shadcn/ui</Badge>
+              <Badge variant="secondary">Tailwind CSS v4</Badge>
+              <Badge variant="secondary">Dark Mode</Badge>
+              <Badge variant="secondary">Responsive</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Code className="h-5 w-5 text-purple-500" />
+              <CardTitle>Developer Experience</CardTitle>
+            </div>
+            <CardDescription>
+              Modern tooling for efficient development
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Badge variant="secondary">Biome</Badge>
+              <Badge variant="secondary">ESLint</Badge>
+              <Badge variant="secondary">Prettier</Badge>
+              <Badge variant="secondary">Husky</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Database className="h-5 w-5 text-orange-500" />
+              <CardTitle>State Management</CardTitle>
+            </div>
+            <CardDescription>
+              Powerful data fetching and state management
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Badge variant="secondary">TanStack Query</Badge>
+              <Badge variant="secondary">React Query</Badge>
+              <Badge variant="secondary">Axios</Badge>
+              <Badge variant="secondary">WebSockets</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Globe className="h-5 w-5 text-red-500" />
+              <CardTitle>Deployment Ready</CardTitle>
+            </div>
+            <CardDescription>
+              Production-ready configuration and deployment
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Badge variant="secondary">Docker</Badge>
+              <Badge variant="secondary">Vercel</Badge>
+              <Badge variant="secondary">Netlify</Badge>
+              <Badge variant="secondary">CI/CD</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Shield className="h-5 w-5 text-indigo-500" />
+              <CardTitle>Best Practices</CardTitle>
+            </div>
+            <CardDescription>
+              Industry-standard patterns and security
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Badge variant="secondary">Security</Badge>
+              <Badge variant="secondary">Performance</Badge>
+              <Badge variant="secondary">Accessibility</Badge>
+              <Badge variant="secondary">SEO</Badge>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Tech Stack */}
+      <Card className="mb-12">
+        <CardHeader>
+          <CardTitle>Technology Stack</CardTitle>
+          <CardDescription>
+            Everything you need to build modern web applications
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="space-y-2">
+              <h4 className="font-semibold text-sm">Frontend</h4>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <div>• Next.js 15.5.0</div>
+                <div>• React 18</div>
+                <div>• TypeScript 5</div>
+                <div>• Tailwind CSS v4</div>
               </div>
             </div>
-            <div className="bg-muted rounded-lg p-8">
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="text-center">
-                    <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-3">
-                      {stat.icon}
-                    </div>
-                    <div className="text-2xl font-bold text-foreground">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm font-medium">{stat.label}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {stat.description}
-                    </div>
-                  </div>
-                ))}
+            <div className="space-y-2">
+              <h4 className="font-semibold text-sm">UI Components</h4>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <div>• shadcn/ui</div>
+                <div>• Radix UI</div>
+                <div>• Lucide Icons</div>
+                <div>• Framer Motion</div>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-sm">Development</h4>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <div>• Bun Package Manager</div>
+                <div>• Biome Formatter</div>
+                <div>• ESLint</div>
+                <div>• Prettier</div>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-sm">Infrastructure</h4>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <div>• Docker</div>
+                <div>• GitHub Actions</div>
+                <div>• Vercel/Netlify</div>
+                <div>• Environment Config</div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </CardContent>
+      </Card>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl flex items-center space-x-3">
-                  <Gavel className="h-8 w-8 text-primary" />
-                  <span>Our Mission</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">
-                  To provide the highest quality used vehicles through
-                  transparent, fair, and efficient auction processes, while
-                  offering world-class shipping and logistics services that make
-                  international car buying accessible and reliable.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl flex items-center space-x-3">
-                  <Globe className="h-8 w-8 text-primary" />
-                  <span>Our Vision</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">
-                  To become the global leader in international vehicle auctions
-                  and shipping, setting industry standards for quality,
-                  transparency, and customer satisfaction while expanding our
-                  reach to serve customers worldwide.
-                </CardDescription>
-              </CardContent>
-            </Card>
+      {/* Getting Started */}
+      <Card className="mb-12">
+        <CardHeader>
+          <CardTitle>Getting Started</CardTitle>
+          <CardDescription>Quick setup guide for developers</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-muted p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">1. Install Dependencies</h4>
+            <code className="bg-background px-2 py-1 rounded text-sm">
+              bun install
+            </code>
           </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Our Core Values
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value) => (
-              <Card
-                key={value.title}
-                className="text-center hover:shadow-lg transition-shadow"
-              >
-                <CardHeader>
-                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                    {value.icon}
-                  </div>
-                  <CardTitle className="text-lg">{value.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{value.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="bg-muted p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">2. Run Development Server</h4>
+            <code className="bg-background px-2 py-1 rounded text-sm">
+              bun run dev
+            </code>
           </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Meet Our Leadership Team
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member) => (
-              <Card
-                key={member.name}
-                className="text-center hover:shadow-lg transition-shadow"
-              >
-                <CardHeader>
-                  <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                    <Users className="h-10 w-10" />
-                  </div>
-                  <CardTitle className="text-lg">{member.name}</CardTitle>
-                  <CardDescription className="font-medium text-primary">
-                    {member.role}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="text-sm">
-                    <p className="font-medium">{member.experience}</p>
-                    <p className="text-muted-foreground">{member.expertise}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="bg-muted p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">3. Build for Production</h4>
+            <code className="bg-background px-2 py-1 rounded text-sm">
+              bun run build
+            </code>
           </div>
-        </div>
-      </section>
+        </CardContent>
+      </Card>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Ready to Experience Marhaba Auction?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join thousands of satisfied customers who trust us with their
-            vehicle needs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" asChild>
-              <Link href="/auctions">Start Bidding</Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button asChild size="lg">
+          <Link href="/components">
+            <Code className="mr-2 h-4 w-4" />
+            View Components
+          </Link>
+        </Button>
+        <Button variant="outline" asChild size="lg">
+          <Link href="https://github.com" target="_blank">
+            <Github className="mr-2 h-4 w-4" />
+            View on GitHub
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }

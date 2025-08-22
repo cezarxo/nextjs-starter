@@ -1,10 +1,4 @@
 // # Zod-validated environment variables
-import { z } from "zod";
-
-const _clientSchema = z.object({
-  NEXT_PUBLIC_API_BASE_URL: z.url(),
-  NEXT_PUBLIC_SOCKET_URL: z.url(),
-});
 
 // Temporarily disabled validation
 export const env = {

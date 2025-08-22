@@ -1,250 +1,401 @@
-# Marhaba - Premium Used Car Auctions
+# Next.js Starter Skeleton
 
-A modern Next.js website for selling used cars through online and onsite auctions, specializing in shipping vehicles from USA & Canada to UAE.
+A modern, production-ready Next.js starter template with TypeScript, Tailwind CSS v4, TanStack Query, shadcn/ui components, and more.
 
-## 🚗 Project Overview
+## 🚀 Features
 
-Marhaba Auctions is a comprehensive platform that connects buyers and sellers of premium used vehicles through live auctions. The platform offers:
+- **Next.js 15** with App Router and Server-Side Rendering
+- **TypeScript** for type safety
+- **Tailwind CSS v4** with modern design system
+- **shadcn/ui** components built on Radix UI
+- **TanStack Query** for server state management
+- **Socket.io** for real-time communication
+- **Axios** for HTTP requests
+- **Biome** for formatting and linting
+- **Docker** support with multi-stage builds
+- **Bun** as the package manager
+- **ESLint** with Next.js rules
+- **PostCSS** with Tailwind CSS
 
-- **Live Auctions**: Real-time bidding on quality vehicles
-- **Global Shipping**: Door-to-door delivery from North America to UAE
-- **Vehicle Catalog**: Browse available vehicles with detailed information
-- **Online & Onsite**: Bid from anywhere or join auction centers
-- **Quality Guarantee**: All vehicles inspected and certified
+## 🛠️ Tech Stack
 
-## 🛠️ Technology Stack
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui + Radix UI
+- **State Management**: TanStack Query
+- **HTTP Client**: Axios
+- **Real-time**: Socket.io
+- **Authentication**: NextAuth.js
+- **Package Manager**: Bun
+- **Linting/Formatting**: Biome
+- **Containerization**: Docker
+- **Database**: MongoDB (optional)
+- **Cache**: Redis (optional)
 
-### Core Technologies
-- **Next.js 15.5.0** - React framework with App Router
-- **React 19.1.0** - UI library
-- **TypeScript 5** - Type-safe JavaScript
-- **Tailwind CSS 4** - Utility-first CSS framework
+## 📦 Prerequisites
 
-### UI Components
-- **Shadcn/ui** - Pre-built, accessible UI components
-- **Lucide React** - Beautiful & consistent icon toolkit
-- **Class Variance Authority** - Component variant management
-- **Tailwind Merge** - Utility for merging Tailwind classes
+- **Node.js** 18+ or **Bun** 1.0+
+- **Docker** (optional, for containerized development)
 
-### State Management & Data
-- **TanStack Query** - Data fetching and caching
-- **Zod** - TypeScript-first schema validation
-- **Axios** - HTTP client for API requests
+## 🔐 NextAuth.js Configuration
 
-### Real-time Features
-- **Socket.io** - Real-time bidirectional communication
-- **Socket.io Client** - Client-side socket implementation
+This starter includes NextAuth.js for authentication with multiple providers:
 
-### Development Tools
-- **Biome** - Fast formatter, linter, and more
-- **Bun** - Fast JavaScript runtime and package manager
+### Environment Variables
 
-## 📦 Package Management
+Create a `.env.local` file with the following variables:
 
-This project uses **Bun** as the package manager for faster installations and better performance.
-
-### Installation
 ```bash
-# Install Bun (if not already installed)
-curl -fsSL https://bun.sh/install | bash
+# NextAuth.js Configuration
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here-change-in-production
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# GitHub OAuth
+GITHUB_ID=your-github-client-id
+GITHUB_SECRET=your-github-client-secret
+
+# Twitter OAuth
+TWITTER_CLIENT_ID=your-twitter-client-id
+TWITTER_CLIENT_SECRET=your-twitter-client-secret
+
+# Database (if using Prisma adapter)
+DATABASE_URL="postgresql://username:password@localhost:5432/nextjs_starter"
+
+# Redis (optional, for session storage)
+REDIS_URL="redis://localhost:6379"
+```
+
+### Supported Providers
+
+- **Google OAuth 2.0**
+- **GitHub OAuth**
+- **Twitter OAuth 2.0**
+- **Credentials** (email/password)
+
+### Features
+
+- Custom sign-in and sign-up pages
+- Social media login integration
+- Protected routes
+- Session management
+- JWT-based authentication
+
+## 🚀 Quick Start
+
+### Using Bun (Recommended)
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd nextjs-starter
 
 # Install dependencies
 bun install
+
+# Start development server
+bun run dev
 ```
 
-### Available Scripts
+### Using npm
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd nextjs-starter
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### Using Docker
+
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+
+# For development with hot reload
+docker-compose --profile dev up --build
+
+# For full stack (with MongoDB and Redis)
+docker-compose --profile full up --build
+```
+
+## 📁 Project Structure
+
+```
+nextjs-starter/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── (auth)/            # Auth route group
+│   │   ├── (home)/            # Home route group
+│   │   ├── api/               # API routes
+│   │   ├── providers/         # React providers
+│   │   └── layout.tsx         # Root layout
+│   ├── components/            # Reusable components
+│   │   ├── ui/               # shadcn/ui components
+│   │   ├── layout/           # Layout components
+│   │   └── custom/           # Custom components
+│   ├── lib/                  # Utility libraries
+│   │   ├── api/              # API utilities
+│   │   ├── sockets/          # Socket.io utilities
+│   │   └── utils.ts          # General utilities
+│   ├── hooks/                # Custom React hooks
+│   ├── types/                # TypeScript type definitions
+│   └── styles/               # Global styles
+├── public/                   # Static assets
+├── Dockerfile               # Multi-stage Docker build
+├── docker-compose.yml       # Docker Compose configuration
+├── tailwind.config.ts       # Tailwind CSS configuration
+├── next.config.ts           # Next.js configuration
+├── biome.json               # Biome configuration
+└── package.json             # Dependencies and scripts
+```
+
+## 🎨 Available Scripts
+
 ```bash
 # Development
-bun run dev          # Start development server with Turbopack
-
-# Building
-bun run build        # Build for production with Turbopack
+bun run dev          # Start development server
+bun run build        # Build for production
 bun run start        # Start production server
 
 # Code Quality
-bun run format       # Format code using Biome
-bun run lint         # Lint code using Biome
-bun run check        # Check code formatting and linting
+bun run lint         # Run Biome linter
+bun run format       # Format code with Biome
+bun run check        # Run Biome check
+bun run type-check   # Run TypeScript type checking
+
+# Docker
+bun run docker:build # Build Docker image
+bun run docker:run   # Run Docker container
+
+# Utilities
+bun run clean        # Clean build artifacts
 ```
 
-## 🔧 Biome Configuration
+## 🔧 Configuration
 
-Biome is used for code formatting, linting, and organization. The configuration is in `biome.json`.
+### Environment Variables
 
-### Key Features
-- **Fast Formatting**: Format code in milliseconds
-- **Linting**: Catch errors and enforce best practices
-- **Import Organization**: Automatically sort and organize imports
-- **TypeScript Support**: Full TypeScript and JSX support
+Create a `.env.local` file in the root directory:
 
-### Biome Commands
+```env
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# API
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api
+
+# Database (optional)
+MONGODB_URI=mongodb://localhost:27017/nextjs_starter
+
+# Redis (optional)
+REDIS_URL=redis://localhost:6379
+
+# Authentication (optional)
+NEXTAUTH_SECRET=your-secret-here
+NEXTAUTH_URL=http://localhost:3000
+```
+
+### Tailwind CSS
+
+The project uses Tailwind CSS v4 with a comprehensive design system including:
+
+- CSS custom properties for theming
+- Dark mode support
+- Responsive design utilities
+- Custom animations and keyframes
+
+### Biome
+
+Biome is configured with:
+
+- Next.js and React recommended rules
+- Automatic import organization
+- Consistent code formatting
+- TypeScript support
+
+## 🐳 Docker
+
+### Development
+
 ```bash
-# Format code
-biome format . --write
+# Start development environment
+docker-compose --profile dev up --build
 
-# Lint code
-biome lint .
-
-# Check formatting and linting
-biome check .
-
-# Apply automatic fixes
-biome lint . --apply
+# Access the app at http://localhost:3001
 ```
 
-### Configuration Highlights
-- Includes `.tsx` files for JSX support
-- Enforces consistent code style
-- Organizes imports automatically
-- Provides helpful error messages
+### Production
 
-## 🏗️ Project Structure
-
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── (marketing)/       # Marketing route group
-│   ├── about/             # About page
-│   ├── auctions/          # Live auctions page
-│   ├── contact/           # Contact page
-│   ├── shipping/          # Shipping services page
-│   ├── vehicles/          # Vehicle catalog page
-│   ├── error.tsx          # Error boundary
-│   ├── global-loading.tsx # Global loading state
-│   ├── layout.tsx         # Root layout
-│   ├── loading.tsx        # Loading fallback
-│   ├── not-found.tsx      # 404 page
-│   └── page.tsx           # Home page
-├── components/             # Reusable components
-│   ├── custom/            # Custom components
-│   ├── layout/            # Layout components
-│   └── ui/                # Shadcn UI components
-├── hooks/                  # Custom React hooks
-├── lib/                    # Utility libraries
-│   ├── api/               # API utilities
-│   ├── sockets/           # Socket.io utilities
-│   └── tanstack-query.tsx # Query client setup
-└── styles/                 # Global styles
-```
-
-## 🎨 UI Components
-
-The project uses Shadcn/ui components for a consistent and accessible design:
-
-- **Button** - Various button variants and sizes
-- **Card** - Content containers with header, content, and description
-- **Badge** - Status indicators and labels
-- **Input** - Form input fields
-- **Select** - Dropdown selection components
-- **Textarea** - Multi-line text input
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+ or Bun
-- Modern web browser
-
-### Development Setup
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd marhaba-new-website
-   ```
-
-2. **Install dependencies**
-   ```bash
-   bun install
-   ```
-
-3. **Start development server**
-   ```bash
-   bun run dev
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:3000`
-
-### Building for Production
 ```bash
-# Build the application
-bun run build
+# Build and run production container
+docker-compose up --build
 
-# Start production server
-bun run start
+# Access the app at http://localhost:3000
 ```
 
-## 📱 Features
+### Full Stack
 
-### Home Page
-- Hero section with call-to-action
-- Feature highlights
-- Featured vehicles showcase
+```bash
+# Start with MongoDB and Redis
+docker-compose --profile full up --build
+```
 
-### Live Auctions
-- Real-time auction listings
-- Search and filter functionality
-- Bidding interface
+## 📱 Component Library
 
-### Vehicle Catalog
-- Browse available vehicles
-- Detailed vehicle information
-- Advanced filtering options
+The project includes a comprehensive set of shadcn/ui components:
 
-### Shipping Services
-- Service types and pricing
-- Process explanation
-- Location coverage
+- **Layout**: Card, Container, Separator
+- **Navigation**: Navigation Menu, Breadcrumb
+- **Forms**: Input, Button, Select, Checkbox, Radio
+- **Feedback**: Alert, Toast, Progress, Skeleton
+- **Data Display**: Table, Badge, Avatar
+- **Overlay**: Dialog, Popover, Tooltip, Hover Card
 
-### About Us
-- Company story and mission
-- Team information
-- Core values
+## 🔌 API Integration
 
-### Contact
-- Contact form
-- Company information
-- Quick action buttons
+### HTTP Client
 
-## 🔒 Security Features
+The project uses Axios with a configured instance in `src/lib/api/http.ts`:
 
-- **HTML Sanitization**: Secure rendering of dynamic content
-- **Type Safety**: Full TypeScript implementation
-- **Input Validation**: Zod schema validation
-- **Secure Links**: Proper external link handling
+```typescript
+import { api } from '@/lib/api/http';
 
-## 🌐 Internationalization
+// GET request
+const data = await api.get('/users');
 
-The platform is designed to serve:
-- **Primary Market**: UAE (United Arab Emirates)
-- **Source Markets**: USA & Canada
-- **Language**: English (expandable to Arabic)
+// POST request
+const response = await api.post('/users', userData);
+```
 
-## 📊 Performance
+### TanStack Query
 
-- **Next.js 15**: Latest performance optimizations
-- **Turbopack**: Fast bundling and development
-- **Image Optimization**: Built-in Next.js image optimization
-- **Code Splitting**: Automatic route-based code splitting
+Configured for server state management:
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+
+function UserProfile({ userId }: { userId: string }) {
+  const { data: user, isLoading } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => fetchUser(userId),
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  return <div>{user.name}</div>;
+}
+```
+
+## 🌐 Real-time Communication
+
+Socket.io is configured for real-time features:
+
+```typescript
+import { useSocket } from '@/hooks/use-socket';
+
+function ChatComponent() {
+  const socket = useSocket();
+  
+  useEffect(() => {
+    socket?.on('message', handleMessage);
+    return () => socket?.off('message', handleMessage);
+  }, [socket]);
+
+  // ... rest of component
+}
+```
+
+## 🎯 Best Practices
+
+### Server-Side Rendering
+
+- All pages use server-side rendering by default
+- API routes for data fetching
+- Proper metadata for SEO
+
+### Performance
+
+- Image optimization with Next.js Image component
+- Code splitting and lazy loading
+- Bundle analysis and optimization
+
+### Security
+
+- Environment variable validation
+- API route protection
+- CORS configuration
+
+### Accessibility
+
+- ARIA labels and roles
+- Keyboard navigation support
+- Screen reader compatibility
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### Docker
+
+```bash
+# Build production image
+docker build -t nextjs-starter .
+
+# Run container
+docker run -p 3000:3000 nextjs-starter
+```
+
+### Other Platforms
+
+The project can be deployed to any platform that supports Node.js or Docker:
+
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS ECS
+- Google Cloud Run
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Run `bun run check` to ensure code quality
+4. Run tests and linting
 5. Submit a pull request
 
 ## 📄 License
 
-This project is private and proprietary.
+This project is licensed under the MIT License.
 
-## 📞 Support
+## 🆘 Support
 
-For support and inquiries:
-- Email: [contact@marhaba-auctions.com]
-- Phone: [+971 XX XXX XXXX]
-- Website: [https://marhaba-auctions.com]
+If you encounter any issues or have questions:
 
----
+1. Check the [Next.js documentation](https://nextjs.org/docs)
+2. Review the [shadcn/ui documentation](https://ui.shadcn.com)
+3. Open an issue in this repository
 
-**Built with ❤️ using Next.js, TypeScript, and Shadcn/ui**
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) - The React framework
+- [shadcn/ui](https://ui.shadcn.com/) - Beautiful UI components
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [TanStack Query](https://tanstack.com/query) - Server state management
+- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible UI primitives

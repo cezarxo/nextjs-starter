@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import Footer from "@/components/layout/Footer";
-import Navigation from "@/components/layout/Navigation";
-import Providers from "./providers";
+import Navigation from "@/components/layout/NavBar";
+import Providers from "./providers/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,15 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Marhaba Auction - Premium Used Car Auctions | USA & Canada to UAE",
-  description:
-    "Marhaba Auction offers premium used car auctions from USA and Canada to UAE. Buy and sell quality vehicles through our online and onsite auction platform.",
-  keywords:
-    "used cars, car auctions, UAE, USA, Canada, vehicle auctions, online auctions, car shipping",
-  authors: [{ name: "Marhaba Auction" }],
+  title: "",
+  description: "",
+  keywords: "",
+  authors: [{ name: "" }],
   openGraph: {
-    title: "Marhaba Auction - Premium Used Car Auctions",
-    description: "Premium used car auctions from USA and Canada to UAE",
+    title: "",
+    description: "",
     type: "website",
     locale: "en_US",
   },
@@ -36,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background`}
       >
